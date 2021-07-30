@@ -1,0 +1,42 @@
+RewriteEngine On
+
+RewriteCond %{REQUEST_FILENAME} !-f
+
+RewriteRule ^/$ pages/home.php
+
+RewriteRule ^home/$ pages/home.php
+RewriteRule ^auth/login$ pages/auth_login.php [L]
+RewriteRule ^auth/logout$ static/functions/auth/logout.php [L]
+RewriteRule ^auth/register$ pages/auth_register.php [L]
+RewriteRule ^auth/forgetpassword$ pages/auth_password_forget.php [L]
+RewriteRule ^auth/resetpassword$ pages/auth_password_reset.php [L]
+RewriteRule ^template/$ pages/template.php
+
+RewriteRule ^post/([0-9]+)$ pages/article_id.php?id=$1
+RewriteRule ^(.*)-([0-9]+)/$ pages/article_id.php?title=$1&id=$2
+RewriteRule ^post/create$ pages/article_edit.php [L]
+RewriteRule ^post/edit-([0-9]+)$ pages/article_edit.php?id=$1 [L]
+
+RewriteRule ^category/$ pages/article_post.php [L]
+RewriteRule ^category/(.*)-([0-9]+)$ pages/article_post.php?category=$1&page=$2 [L]
+RewriteRule ^category/(.*)-([0-9]+)-(.*)$ pages/article_post.php?category=$1&page=$2&tags=$3 [L]
+
+RewriteRule ^suggestion/$ pages/suggestion.php
+
+RewriteRule ^profile/$ pages/profile.php
+RewriteRule ^saveProfile/$ pages/profile_save.php [L]
+
+RewriteRule ^post/$ pages/article_post.php [L]
+
+RewriteRule ^admin/(.*)-([0-9]+)$ pages/admin_$1.php?id=$2 [L]
+RewriteRule ^admin/(.*)$ pages/admin_$1.php
+RewriteRule ^people/(.*)$ pages/people_$1.php
+
+Options +FollowSymlinks
+Options +Indexes
+DirectoryIndex .index.php .index.html index.php index.html .redirect.html redirect.html landing.html landing.php .landing.html .landing.php .redirect.php redirect.php
+
+php_value post_max_size 128M
+php_value upload_max_filesize 128M
+php_value display_errors On
+php_value max_execution_time 300

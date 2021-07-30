@@ -1,0 +1,60 @@
+<div class="card mb-3">
+    <div class="card-body">
+    <div class="card-title"><div class="font-weight-bold count-up h1 text-center" data-from="0" data-to="{wstotal}" data-time="1000">0</div></div>
+        <div class="card-text">
+            <p>
+              <hr>
+            <div class="text-success"><i class="fas fa-user"></i> Today: {wstoday}</div>
+            <div class="text-warning"><i class="fas fa-user"></i> This Month: {wsmonth}</div>
+            <div class="text-danger"><i class="fas fa-user"></i> This Year: {wsyear}</div>
+            <div class="text-secondary"><i class="fas fa-users"></i> Total: {wstotal}</div>
+            </p>
+        </div>
+    </div>
+    <div class="card-footer">
+      <i class="text-black-50">IP ของคุณ: {wsip}</i>
+      <small class="text-muted text-center"><a href="http://www.free-php-counter.com" target="_blank">Free PHP
+				Counter</a></small>
+    </div>
+</div>
+<script>
+(function ($){
+  $.fn.counter = function() {
+    const $this = $(this),
+    numberFrom = parseInt($this.attr('data-from')),
+    numberTo = parseInt($this.attr('data-to')),
+    delta = numberTo - numberFrom,
+    deltaPositive = delta > 0 ? 1 : 0,
+    time = parseInt($this.attr('data-time')),
+    changeTime = 10;
+    
+    let currentNumber = numberFrom,
+    value = delta*changeTime/time;
+    var interval1;
+    const changeNumber = () => {
+      currentNumber += value;
+      //checks if currentNumber reached numberTo
+      (deltaPositive && currentNumber >= numberTo) || (!deltaPositive &&currentNumber<= numberTo) ? currentNumber=numberTo : currentNumber;
+      this.text(parseInt(currentNumber));
+      currentNumber == numberTo ? clearInterval(interval1) : currentNumber;  
+    }
+
+    interval1 = setInterval(changeNumber,changeTime);
+  }
+}(jQuery));
+
+$(document).ready(function(){
+
+  $('.count-up').counter();
+  $('.count1').counter();
+  $('.count2').counter();
+  $('.count3').counter();
+  $('.count4').counter();
+  
+  new WOW().init();
+  
+  setTimeout(function () {
+    $('.count5').counter();
+  }, 3000);
+});
+</script>
