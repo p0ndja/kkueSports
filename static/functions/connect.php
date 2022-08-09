@@ -18,8 +18,4 @@
     require_once 'function.php';
     
     date_default_timezone_set('Asia/Bangkok');
-
-    global $conf;
-    $conf = new Config();
-
 ?>
