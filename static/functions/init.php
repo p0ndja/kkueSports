@@ -36,7 +36,7 @@
     abstract class HardcodedPostCategory {
         const CATEGORIES = array("เกี่ยวกับ", "บุคลากร", "การศึกษา", "งานวิจัย", "บริการ", "ประชาสัมพันธ์");
     }
-
+/*
     class Config {
         protected $config;
 
@@ -64,9 +64,9 @@
             return null;
         }
     }
-
+*/
     class User {
-        protected $id, $user, $email, $role, $group, $job, $firstname, $lastname;
+        protected $id, $user, $email, $admin, $firstname, $lastname;
         public $perm, $profile;
 
         public function getID() {
